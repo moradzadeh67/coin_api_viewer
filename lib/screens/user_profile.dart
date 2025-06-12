@@ -1,31 +1,43 @@
-import 'package:api/data/model/user.dart';
+import 'package:api/data/model/crypto.dart';
 import 'package:flutter/material.dart';
 
-class UserProfileScreen extends StatefulWidget {
-  UserProfileScreen({super.key, this.user});
-  User? user;
+class CoinListScreen extends StatefulWidget {
+  CoinListScreen({super.key, this.cryptoList});
+  List<Crypto>? cryptoList;
 
   @override
-  State<UserProfileScreen> createState() => _UserProfileScreenState();
+  _CoinListScreenState createState() => _CoinListScreenState();
 }
 
-class _UserProfileScreenState extends State<UserProfileScreen> {
-  User? user;
+class _CoinListScreenState extends State<CoinListScreen> {
+  List<Crypto>? cryptoList;
   @override
   void initState() {
     super.initState();
-    user = widget.user;
+    cryptoList = widget.cryptoList;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Text(
-            user!.id,
-            style: TextStyle(color: Colors.black, fontSize: 18),
-          ),
+    return SafeArea(
+      child: Scaffold(
+        body: ListView.builder(
+          itemCount: cryptoList!.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Container(
+                height: 200,
+                color: Colors.blue,
+                child: Center(
+                  child: Text(
+                    cryptoList![index].name,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

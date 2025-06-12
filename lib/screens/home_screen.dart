@@ -1,8 +1,9 @@
 import 'package:api/screens/user_profile.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../data/model/user.dart';
+import '../data/model/crypto.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String title = 'Loading...';
-  User? user;
+
   @override
   initState() {
     super.initState();
@@ -24,7 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
-      body: SafeArea(child: Center(child: Text('test'))),
+      body: SafeArea(
+        child: Center(
+          child: SpinKitRotatingCircle(color: Colors.white, size: 50.0),
+        ),
+      ),
     );
   }
 
@@ -33,10 +38,15 @@ class _HomeScreenState extends State<HomeScreen> {
       'https://rest.coincap'
       '.io/v3/assets?apiKey=0add4468326e999de8747e8ad5ba36063f54004122bc39dc9c404020cf682c92',
     );
+    List<Crypto> cryptoList = response.data['data']
+        .map<Crypto>((jsonMapObject) => Crypto.fromMapJson(jsonMapObject))
+        .toList();
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => UserProfileScreen(user: user)),
+      MaterialPageRoute(
+        builder: (context) => CoinListScreen(cryptoList: cryptoList),
+      ),
     );
   }
 }

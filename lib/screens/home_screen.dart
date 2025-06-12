@@ -1,4 +1,4 @@
-import 'package:api/screens/user_profile.dart';
+import 'package:api/screens/coin_list_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -24,10 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.redAccent[700],
       body: SafeArea(
-        child: Center(
-          child: SpinKitRotatingCircle(color: Colors.white, size: 50.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(image: AssetImage('assets/images/logo.png')),
+            SizedBox(height: 20.0),
+            SpinKitWave(color: Colors.white, size: 50.0),
+          ],
         ),
       ),
     );

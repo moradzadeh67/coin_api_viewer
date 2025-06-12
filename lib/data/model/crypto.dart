@@ -1,6 +1,7 @@
 class Crypto {
   final String id;
   final String rank;
+  final String symbol;
   final String name;
   final String maxSupply;
   final String volumeUsd24Hr;
@@ -10,6 +11,7 @@ class Crypto {
   Crypto(
     this.id,
     this.rank,
+    this.symbol,
     this.name,
     this.maxSupply,
     this.volumeUsd24Hr,
@@ -21,6 +23,7 @@ class Crypto {
     return Crypto(
       jsonMapObject['id']?.toString() ?? '',
       jsonMapObject['rank']?.toString() ?? '',
+      jsonMapObject['symbol']?.toString() ?? '',
       jsonMapObject['name']?.toString() ?? '',
       jsonMapObject['maxSupply']?.toString() ?? '',
       jsonMapObject['volumeUsd24Hr']?.toString() ?? '',

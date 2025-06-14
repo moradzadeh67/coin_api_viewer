@@ -209,8 +209,7 @@ Color _getColor(String changePercent) {
 
 Future<List<Crypto>> getData() async {
   var response = await Dio().get(
-    'https://rest.coincap'
-    '.io/v3/assets?apiKey=0add4468326e999de8747e8ad5ba36063f54004122bc39dc9c404020cf682c92',
+    'https://rest.coincap.io/v3/assets?apiKey=0add4468326e999de8747e8ad5ba36063f54004122bc39dc9c404020cf682c92',
   );
   List<Crypto> cryptoList = response.data['data']
       .map<Crypto>((jsonMapObject) => Crypto.fromMapJson(jsonMapObject))
